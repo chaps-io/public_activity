@@ -51,10 +51,13 @@ module PublicActivity
           end
         rescue ::ActiveRecord::NoDatabaseError => e
           warn("[WARN] database doesn't exist. Skipping PublicActivity::Activity#parameters's serialization")
+          warn(e)
         rescue ::PG::ConnectionBad => e
           warn("[WARN] couldn't connect to database. Skipping PublicActivity::Activity#parameters's serialization")
-        rescue Mysql2::Error::ConnectionError
+          warn(e)
+        rescue Mysql2::Error::ConnectionError => e
           warn("[WARN] couldn't connect to database. Skipping PublicActivity::Activity#parameters's serialization")
+          warn(e)
         end
 
         if ::ActiveRecord::VERSION::MAJOR < 4 || defined?(ProtectedAttributes)
