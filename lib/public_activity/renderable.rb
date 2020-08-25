@@ -12,7 +12,8 @@ module PublicActivity
       k.unshift('activity') if k.first != 'activity'
       k = k.join('.')
 
-      I18n.t(k, parameters.merge(params) || {})
+      translate_params = parameters.merge(params) || {}	
+      I18n.t(k, **translate_params)
     end
 
     # Renders activity from views.

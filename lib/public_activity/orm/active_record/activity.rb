@@ -49,9 +49,9 @@ module PublicActivity
           else
             warn("[WARN] table #{name} doesn't exist. Skipping PublicActivity::Activity#parameters's serialization")
           end
-        rescue ::ActiveRecord::NoDatabaseError => e
+        rescue ::ActiveRecord::NoDatabaseError
           warn("[WARN] database doesn't exist. Skipping PublicActivity::Activity#parameters's serialization")
-        rescue ::PG::ConnectionBad => e
+        rescue ::PG::ConnectionBad
           warn("[WARN] couldn't connect to database. Skipping PublicActivity::Activity#parameters's serialization")
         rescue Mysql2::Error::ConnectionError
           warn("[WARN] couldn't connect to database. Skipping PublicActivity::Activity#parameters's serialization")
